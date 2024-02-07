@@ -1,5 +1,5 @@
 <div>
-    <p class="title font-bold mb-4">{{ ($random) ? $images[$random]['title'] : 'Image' }}</p>
+    <p class="title font-bold mb-4">{{ ($images[$random]['title']) ?? 'Picture' }}</p>
     <div class=" mb-4">
         <img class="image-container" src="{{ $images[$random]['url'] }}" alt="{{ isset( $images[$random]['tile']) ? isset( $images[$random]['tile']) : 'image' }}">
     </div>
