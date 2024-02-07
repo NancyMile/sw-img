@@ -1,5 +1,5 @@
 <div>
-    <form wire:submit.prevent="sendEmail">
+    <form  method="POST" wire:submit.prevent="sendEmail">
         @csrf
         <input type="hidden" name="url"  value="{{ isset($images[$random]['url']) }}"/>
         <div class="frame sm:flex justify-between">

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Mail\NotificationMail;
 use Livewire\Component;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
@@ -23,15 +24,12 @@ class SendEmail extends Component
     {
         $this->validate();
 
-        //send email
-        Mail::raw('Hello, this is a test mail!', function ($message) {
-            $message->from('noreply@example.com')
-            ->to($this->email)
-            ->subject('Thanks');
-            //->view('emails.notification',['url' => $this->url, 'title' => $this->title]);
-        });
+        Mail::to('testreceiver@gmail.com')->send(new NotificationMail($this->email));
+        // Also, you can use specific mailer if your default mailer is not "mailtrap" but you want to use it for welcome mails
+        // Mail::mailer('mailtrap')->to('testreceiver@gmail.com')->send(new WelcomeMail("Jon"));
 
         return redirect()->route('home')->with('success','Email sent successfully');
+
     }
 
     public function render()
